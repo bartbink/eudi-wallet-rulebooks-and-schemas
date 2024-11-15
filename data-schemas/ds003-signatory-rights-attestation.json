@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "EWC - Signatory Rights",
-  "description": "Schema for Signatory Rights -  EWC WP3",
+  "title": "EWC - Full Signatory Rights",
+  "description": "Schema for Full Signatory Rights -  EWC WP3",
   "type": "object",
   "properties": {
     "issuing_authority": {
@@ -43,17 +43,17 @@
       "type": "string"
     },
     "credentialSubject": {
-      "description": "Attributes describing the legal representation of a legal entity",
+      "description": "Attributes describing the legal representation of an organisation",
       "type": "object",
       "properties": {
-        "legalEntity": {
+        "organisation": {
           "type": "object",
           "properties": {
-            "legalName": {
-              "description": "Legal person official name as in LPID",
+            "registeredName": {
+              "description": "Organisation official name as in LPID",
               "type": "string"
             },
-            "legalIdentifier": {
+            "registryIdentifier": {
               "description": "National registration number of the company",
               "type": "string"
             },
@@ -63,13 +63,13 @@
             }
           },
           "required": [
-            "legalName",
-            "legalIdentifier",
+            "registeredName",
+            "registerIdentifier",
             "identifier"
           ]
         },   
         "signatoryRights": {
-          "description": "Information about the person and its signatory right about the legal entity",
+          "description": "Information about the person and its full signatory right for the organisation",
           "type": "array",
           "items": {
             "oneOf": [
@@ -77,14 +77,14 @@
                 "$ref": "#/$defs/signatoryRights.heldByPerson"
               },
               {
-                "$ref": "#/$defs/signatoryRights.HeldBylegalPerson"
+                "$ref": "#/$defs/signatoryRights.HeldByOrganisation"
               }
             ]
           }
         }
       },
       "required": [
-        "legalEntity",
+        "organisation",
         "signatoryRights"
       ]
     },
@@ -205,7 +205,7 @@
         "post"
       ]
     },
-    "signatoryRights.HeldBylegalPerson": {
+    "signatoryRights.HeldByOrganisation": {
       "description": "Details about the representative of the company and its right if incarnated by a legal person",
       "type": "object",
       "properties": {
